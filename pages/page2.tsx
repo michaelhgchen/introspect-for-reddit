@@ -15,14 +15,12 @@ const TEST_QUERY_2 = gql`
 `;
 
 const Page2 = () => {
-  const { loading, data, error } = useQuery<TestQuery2>(TEST_QUERY_2);
+  const { loading, error } = useQuery<TestQuery2>(TEST_QUERY_2);
 
   if (loading) {
     return "loading";
   } else if (error) {
     return "error";
-  } else {
-    console.log(data);
   }
 
   return (

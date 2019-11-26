@@ -9,7 +9,7 @@ import fetch from "isomorphic-unfetch";
 
 let apolloClient = null;
 
-const GRAPHQL_API_URL = "http://localhost:3000/graphql";
+const GRAPHQL_API_URL = `${process.env.BASE_URL}/graphql`;
 
 /**
  * Creates and provides the apolloContext
