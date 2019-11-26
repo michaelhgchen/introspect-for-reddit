@@ -1,0 +1,6 @@
+# import Post from './Post.graphql'
+
+type Query {
+  upvoted: [Post]
+  saved: [Post]
+}
