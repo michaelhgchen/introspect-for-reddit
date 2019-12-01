@@ -9,6 +9,9 @@ import { withApollo } from "../lib/withApollo";
 
 const TEST_QUERY_1 = gql`
   query TestQuery1 {
+    me {
+      name
+    }
     upvoted {
       id
     }
@@ -24,11 +27,17 @@ const Home = () => {
     return "error";
   }
 
+  const { me } = data;
+
   return (
     <div>
-      <Button variant="contained" color="primary">
-        Hello World
-      </Button>
+      <a href={me ? "/logout" : "/login"}>
+        <Button variant="contained" color="primary">
+          {me ? "Logout" : "Login"}
+        </Button>
+      </a>
+      {me && <div>Logged in as {me.name}</div>}
+
       <Link href="/page2">
         <a>Test preload baby</a>
       </Link>

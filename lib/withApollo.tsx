@@ -1,5 +1,6 @@
 // from https://github.com/zeit/next.js/blob/canary/examples/with-apollo/lib/apollo.js
 import React from "react";
+import getConfig from "next/config";
 import Head from "next/head";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ApolloClient } from "apollo-client";
@@ -9,7 +10,8 @@ import fetch from "isomorphic-unfetch";
 
 let apolloClient = null;
 
-const GRAPHQL_API_URL = `${process.env.BASE_URL}/graphql`;
+const { publicRuntimeConfig } = getConfig();
+const GRAPHQL_API_URL = `${publicRuntimeConfig.baseUrl}/graphql`;
 
 /**
  * Creates and provides the apolloContext

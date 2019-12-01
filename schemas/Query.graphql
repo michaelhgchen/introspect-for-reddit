@@ -1,6 +1,8 @@
 # import Post from './Post.graphql'
+# import User from './User.graphql'
 
 type Query {
-  upvoted: [Post]
+  me: User
   saved: [Post]
+  upvoted: [Post]
 }

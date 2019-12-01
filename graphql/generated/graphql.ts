@@ -23,8 +23,15 @@ export type Post = {
 
 export type Query = {
   __typename?: 'Query',
-  upvoted?: Maybe<Array<Maybe<Post>>>,
+  me?: Maybe<User>,
   saved?: Maybe<Array<Maybe<Post>>>,
+  upvoted?: Maybe<Array<Maybe<Post>>>,
+};
+
+export type User = {
+  __typename?: 'User',
+  id?: Maybe<Scalars['String']>,
+  name?: Maybe<Scalars['String']>,
 };
 
 
@@ -88,11 +95,12 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Query: {},
+  User: User,
+  String: Scalars['String'],
   Post: Post,
   Int: Scalars['Int'],
   Mutation: {},
   Boolean: Scalars['Boolean'],
-  String: Scalars['String'],
 };
 
 export type MutationResolvers<ContextType = any, ParentType = ResolversTypes['Mutation']> = {
@@ -105,14 +113,21 @@ export type PostResolvers<ContextType = any, ParentType = ResolversTypes['Post']
 };
 
 export type QueryResolvers<ContextType = any, ParentType = ResolversTypes['Query']> = {
-  upvoted?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>,
+  me?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>,
   saved?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>,
+  upvoted?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>,
+};
+
+export type UserResolvers<ContextType = any, ParentType = ResolversTypes['User']> = {
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
 };
 
 export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>,
   Post?: PostResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
+  User?: UserResolvers<ContextType>,
 };
 
 
