@@ -13,7 +13,22 @@ export interface TestQuery1_me {
 
 export interface TestQuery1_upvoted {
   __typename: "Post";
-  id: number | null;
+  author: string;
+  created_utc: string;
+  domain: string;
+  id: string;
+  is_self: boolean;
+  is_video: boolean;
+  num_comments: number;
+  over_18: boolean;
+  permalink: string;
+  score: string;
+  subreddit: string;
+  thumbnail: string | null;
+  thumbnail_height: number | null;
+  thumbnail_width: number | null;
+  title: string;
+  url: string;
 }
 
 export interface TestQuery1 {

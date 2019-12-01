@@ -18,7 +18,22 @@ export type Mutation = {
 
 export type Post = {
   __typename?: 'Post',
-  id?: Maybe<Scalars['Int']>,
+  author: Scalars['String'],
+  created_utc: Scalars['String'],
+  domain: Scalars['String'],
+  id: Scalars['String'],
+  is_self: Scalars['Boolean'],
+  is_video: Scalars['Boolean'],
+  num_comments: Scalars['Int'],
+  over_18: Scalars['Boolean'],
+  permalink: Scalars['String'],
+  score: Scalars['String'],
+  subreddit: Scalars['String'],
+  thumbnail?: Maybe<Scalars['String']>,
+  thumbnail_height?: Maybe<Scalars['Int']>,
+  thumbnail_width?: Maybe<Scalars['Int']>,
+  title: Scalars['String'],
+  url: Scalars['String'],
 };
 
 export type Query = {
@@ -98,9 +113,9 @@ export type ResolversTypes = {
   User: User,
   String: Scalars['String'],
   Post: Post,
+  Boolean: Scalars['Boolean'],
   Int: Scalars['Int'],
   Mutation: {},
-  Boolean: Scalars['Boolean'],
 };
 
 export type MutationResolvers<ContextType = any, ParentType = ResolversTypes['Mutation']> = {
@@ -109,7 +124,22 @@ export type MutationResolvers<ContextType = any, ParentType = ResolversTypes['Mu
 };
 
 export type PostResolvers<ContextType = any, ParentType = ResolversTypes['Post']> = {
-  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
+  author?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  created_utc?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  domain?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  is_self?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
+  is_video?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
+  num_comments?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  over_18?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
+  permalink?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  score?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  subreddit?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  thumbnail?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  thumbnail_height?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
+  thumbnail_width?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>,
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  url?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
 export type QueryResolvers<ContextType = any, ParentType = ResolversTypes['Query']> = {

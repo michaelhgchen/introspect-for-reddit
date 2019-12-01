@@ -19,9 +19,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const { serverRuntimeConfig } = getConfig(); // is undefined if next app is not init
 
-// =============================================================================
-// passport session setup
-// =============================================================================
+// initialize passport
 passport.serializeUser(function(user, cb) {
   cb(null, user);
 });
@@ -47,7 +45,6 @@ passport.use(
     }
   )
 );
-// =============================================================================
 
 const apollo = new ApolloServer({
   context: ({ req, res }) => ({ req, res }),
@@ -81,6 +78,7 @@ app.prepare().then(() => {
     req.session.state = randomBytes(32).toString("hex");
 
     passport.authenticate("reddit", {
+      scope: ['history', 'identity'],
       state: req.session.state
     })(req, res, next);
   });
@@ -97,19 +95,7 @@ app.prepare().then(() => {
     }
   });
 
-  // protected resources
-  server.get("/me", (req, res) => {
-    if (req.isAuthenticated()) {
-      return res.json({
-        // https://github.com/DefinitelyTyped/DefinitelyTyped/commit/91c229dbdb653dbf0da91992f525905893cbeb91#comments
-        name: (req.user as any).name
-      });
-    } else {
-      throw new Error();
-    }
-  });
-
-  // default next behavior
+  // default next handler
   server.all("*", (req, res) => {
     return handle(req, res);
   });

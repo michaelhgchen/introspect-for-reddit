@@ -7,13 +7,29 @@ import Link from "next/link";
 import { TestQuery1 } from "../__generated__/TestQuery1";
 import { withApollo } from "../lib/withApollo";
 
+// TODO: split queries, add batching
 const TEST_QUERY_1 = gql`
   query TestQuery1 {
     me {
       name
     }
     upvoted {
+      author
+      created_utc
+      domain
       id
+      is_self
+      is_video
+      num_comments
+      over_18
+      permalink
+      score
+      subreddit
+      thumbnail
+      thumbnail_height
+      thumbnail_width
+      title
+      url
     }
   }
 `;
@@ -27,7 +43,7 @@ const Home = () => {
     return "error";
   }
 
-  const { me } = data;
+  const { me, upvoted } = data;
 
   return (
     <div>
@@ -38,9 +54,11 @@ const Home = () => {
       </a>
       {me && <div>Logged in as {me.name}</div>}
 
-      <Link href="/page2">
-        <a>Test preload baby</a>
+      <Link href="/about">
+        <a>About</a>
       </Link>
+
+      {upvoted && <div>{JSON.stringify(upvoted)}</div>}
     </div>
   );
 };

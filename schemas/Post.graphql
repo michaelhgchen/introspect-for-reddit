@@ -1,3 +1,23 @@
 type Post {
-  id: Int
+  # TODO: resolve and use
+  # media: [Object]
+  # media_embed: [Object]
+  # media_only: false
+  # preview: Object
+  author: String!
+  created_utc: String!
+  domain: String!
+  id: String!
+  is_self: Boolean!
+  is_video: Boolean!
+  num_comments: Int!
+  over_18: Boolean!
+  permalink: String!
+  score: String!
+  subreddit: String!
+  thumbnail: String
+  thumbnail_height: Int
+  thumbnail_width: Int
+  title: String!
+  url: String!
 }

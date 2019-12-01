@@ -8,7 +8,7 @@
 
 export interface TestQuery2_saved {
   __typename: "Post";
-  id: number | null;
+  id: string;
 }
 
 export interface TestQuery2 {
