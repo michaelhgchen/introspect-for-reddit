@@ -8,7 +8,7 @@
     "deploy": "heroku stack:set container && git push heroku master",
     "generate": "graphql-codegen --config codegen.yml && npm run generate-client",
     "generate-client": " apollo client:codegen --target typescript --localSchemaFile ./graphql.schema.json --includes='./pages/**/*.tsx' --outputFlat",
-    "start": "cross-env NODE_ENV=production node build/index.js"
+    "start": "cross-env NODE_ENV=production node build/server/index.js"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",

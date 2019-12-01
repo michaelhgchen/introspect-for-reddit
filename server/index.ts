@@ -49,7 +49,7 @@ passport.use(
 const apollo = new ApolloServer({
   context: ({ req, res }) => ({ req, res }),
   resolvers,
-  typeDefs: gql(importSchema(join(__dirname, "../schema.graphql")))
+  typeDefs: gql(importSchema(join(process.cwd(), "schema.graphql")))
 });
 
 app.prepare().then(() => {
