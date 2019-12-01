@@ -11,7 +11,9 @@ import fetch from "isomorphic-unfetch";
 let apolloClient = null;
 
 const { publicRuntimeConfig } = getConfig();
-const GRAPHQL_API_URL = `${publicRuntimeConfig.baseUrl}/graphql`;
+
+// TODO: fallback isn't good, SSR won't work. figure this out
+const GRAPHQL_API_URL = `${publicRuntimeConfig.baseUrl || ""}/graphql`;
 
 /**
  * Creates and provides the apolloContext
