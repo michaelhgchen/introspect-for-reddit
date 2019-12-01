@@ -8,7 +8,7 @@ export default class App extends BaseApp {
     return (
       <>
         <Head>
-          <title>reddit upvotes</title>
+          <title>introspect for reddit</title>
         </Head>
         <Component {...pageProps} />
       </>
