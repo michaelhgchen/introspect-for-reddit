@@ -78,7 +78,7 @@ app.prepare().then(() => {
     req.session.state = randomBytes(32).toString("hex");
 
     passport.authenticate("reddit", {
-      scope: ['history', 'identity'],
+      scope: ["history", "identity"],
       state: req.session.state
     })(req, res, next);
   });
@@ -93,6 +93,10 @@ app.prepare().then(() => {
       // TODO: better error state
       next(new Error());
     }
+  });
+
+  server.get("/service-worker.js", (req, res) => {
+    res.sendFile(join(process.cwd(), ".next", "service-worker.js"));
   });
 
   // default next handler

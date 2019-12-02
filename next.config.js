@@ -1,6 +1,7 @@
 require("dotenv").config();
+const withOffline = require("next-offline");
 
-module.exports = {
+module.exports = withOffline({
   serverRuntimeConfig: {
     redditClientId: process.env.REDDIT_CLIENT_ID,
     redditClientSecret: process.env.REDDIT_CLIENT_SECRET,
@@ -8,5 +9,6 @@ module.exports = {
   },
   publicRuntimeConfig: {
     baseUrl: process.env.BASE_URL
-  }
-};
+  },
+  generateInDevMode: true,
+});

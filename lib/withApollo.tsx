@@ -5,7 +5,8 @@ import Head from "next/head";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { HttpLink } from "apollo-link-http";
+import { createPersistedQueryLink } from "apollo-link-persisted-queries";
+import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
 
 let apolloClient = null;
@@ -131,14 +132,19 @@ function initApolloClient(initialState?) {
  * @param  {Object} [initialState={}]
  */
 function createApolloClient(initialState = {}) {
-  // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
-  return new ApolloClient({
-    ssrMode: typeof window === "undefined", // Disables forceFetch on the server (so queries are only run once)
-    link: new HttpLink({
-      uri: GRAPHQL_API_URL, // Server URL (must be absolute)
+  const link = createPersistedQueryLink({
+    useGETForHashedQueries: true
+  }).concat(
+    createHttpLink({
+      uri: GRAPHQL_API_URL,
       credentials: "same-origin",
       fetch
-    }),
-    cache: new InMemoryCache().restore(initialState)
+    })
+  );
+  // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
+  return new ApolloClient({
+    cache: new InMemoryCache().restore(initialState),
+    ssrMode: typeof window === "undefined", // Disables forceFetch on the server (so queries are only run once)
+    link
   });
 }
