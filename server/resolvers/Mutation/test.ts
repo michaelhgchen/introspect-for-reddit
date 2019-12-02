@@ -1,7 +1,7 @@
 import { registerMutationResolver } from "../helpers";
 
-registerMutationResolver<"login">(
-  "login",
+registerMutationResolver<"test">(
+  "test",
   async (_parent, _params, _context) => {
     return true;
   }

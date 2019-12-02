@@ -1,2 +1,1 @@
-import "./login";
-import "./logout";
+import "./test";

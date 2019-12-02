@@ -1,6 +1,5 @@
 # import Post from './Post.graphql'
 
 type Mutation {
-  login: Boolean
-  logout: Boolean
+  test: Boolean
 }

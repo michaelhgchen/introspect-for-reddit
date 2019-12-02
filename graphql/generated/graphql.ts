@@ -12,8 +12,7 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation',
-  login?: Maybe<Scalars['Boolean']>,
-  logout?: Maybe<Scalars['Boolean']>,
+  test?: Maybe<Scalars['Boolean']>,
 };
 
 export type Post = {
@@ -119,8 +118,7 @@ export type ResolversTypes = {
 };
 
 export type MutationResolvers<ContextType = any, ParentType = ResolversTypes['Mutation']> = {
-  login?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
-  logout?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
+  test?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
 };
 
 export type PostResolvers<ContextType = any, ParentType = ResolversTypes['Post']> = {
