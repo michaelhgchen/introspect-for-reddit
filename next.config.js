@@ -10,5 +10,5 @@ module.exports = withOffline({
   publicRuntimeConfig: {
     baseUrl: process.env.BASE_URL
   },
-  generateInDevMode: true,
+  // generateInDevMode: true,
 });

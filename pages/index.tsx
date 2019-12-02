@@ -35,7 +35,7 @@ const TEST_QUERY_1 = gql`
 `;
 
 const Home = () => {
-  const { loading, data, error } = useQuery<TestQuery1>(TEST_QUERY_1);
+  const { client, loading, data, error } = useQuery<TestQuery1>(TEST_QUERY_1);
 
   if (loading) {
     return "loading";
@@ -47,7 +47,19 @@ const Home = () => {
 
   return (
     <div>
-      <a href={me ? "/logout" : "/login"}>
+      <a
+        href={me ? "/logout" : "/login"}
+        onClick={e => {
+          if (me) {
+            e.preventDefault();
+            const targetHref = e.currentTarget.href;
+
+            client.clearStore().then(a => {
+              window.location.href = targetHref;
+            });
+          }
+        }}
+      >
         <Button variant="contained" color="primary">
           {me ? "Logout" : "Login"}
         </Button>
